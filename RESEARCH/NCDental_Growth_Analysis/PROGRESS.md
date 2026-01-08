@@ -137,8 +137,10 @@ Model: B2C
 ## Deployment Complete
 
 ### Live URLs
-- **Vercel**: https://website-mybcat.vercel.app
+- **Vercel**: https://northcreekdental.vercel.app
 - **GitHub**: https://github.com/AnkitClassicVision/north_creek_dental
+
+> Auto-deploy enabled: Pushes to GitHub will automatically deploy to Vercel
 
 ## Website Location
 ```
