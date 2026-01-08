@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "playwright-extension": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--extension"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/umyong"
+      ]
+    },
+        "actors-mcp-server": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@smithery/cli@latest",
+            "run",
+            "@MJBeauty/actors-mcp-server",
+            "--key",
+            "7e1d285d-95b0-4893-864a-6134ac8dbbf1",
+            "--profile",
+            "husky-squid-K40RLf"
+          ]
+    },
+    "playwright-extension": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--extension"
+      ]
+    }
+  }
+}

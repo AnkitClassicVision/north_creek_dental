@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "company": "North Creek Dental Care",
+    "short_name": "NCDental",
+    "services": {
+      "primary": "Teeth in a Day / All-on-4 Implants",
+      "secondary": "Cosmetic Dentistry"
+    },
+    "industry": "Dental Services",
+    "model": "B2C",
+    "intensity_tier": "Standard",
+    "created": "2026-01-08T00:00:00Z"
+  },
+  "hypotheses": [
+    {"id": "H-M1", "statement": "All-on-4 market growing 8-12% annually", "prior": 0.75, "current": 0.75, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-M2", "statement": "Trust > Price for All-on-4 decisions", "prior": 0.70, "current": 0.70, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-M3", "statement": "Cosmetic skews F/35-55/$100k+", "prior": 0.65, "current": 0.65, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-C1", "statement": "In-house specialists = competitive advantage", "prior": 0.80, "current": 0.80, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-C2", "statement": "DSOs (ClearChoice, Aspen) are biggest threat", "prior": 0.70, "current": 0.70, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-C3", "statement": "Credentials differentiation opportunity exists", "prior": 0.75, "current": 0.75, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-G1", "statement": "Google Ads highest ROI channel", "prior": 0.70, "current": 0.70, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-G2", "statement": "Conversion rate is primary growth barrier", "prior": 0.65, "current": 0.65, "evidence_for": [], "evidence_against": [], "status": "testing"},
+    {"id": "H-G3", "statement": "Financing increases conversion 25-40%", "prior": 0.75, "current": 0.75, "evidence_for": [], "evidence_against": [], "status": "testing"}
+  ],
+  "nodes": {
+    "n1": {
+      "id": "n1",
+      "type": "root",
+      "text": "Root: Research NCDental growth strategy for All-on-4 and Cosmetic Dentistry",
+      "depth": 0,
+      "score": 0,
+      "score_breakdown": {"relevance": 0, "authority": 0, "rigor": 0, "independence": 0, "coherence": 0},
+      "sources": [],
+      "claims": [],
+      "status": "active"
+    }
+  },
+  "edges": [],
+  "frontier": ["n1"],
+  "budget": {
+    "total_agents": 30,
+    "deployed": 0,
+    "remaining": 30,
+    "N_search": 30,
+    "N_fetch": 30,
+    "N_docs": 12,
+    "N_iter": 6
+  },
+  "checkpoints": [],
+  "iteration": 0
+}

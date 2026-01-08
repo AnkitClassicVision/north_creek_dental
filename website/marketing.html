@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Strategy - NCDental Growth Dashboard</title>
+  <meta name="description" content="Comprehensive marketing strategy for dental implant and cosmetic dentistry growth">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232dd4bf' stroke-width='2'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="aurora-bg">
+    <div class="aurora-blob aurora-blob--indigo"></div>
+    <div class="aurora-blob aurora-blob--rose"></div>
+    <div class="aurora-blob aurora-blob--teal"></div>
+  </div>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        NCDental Growth
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Dashboard</a></li>
+        <li><a href="executive-summary.html" class="nav__link">Executive Summary</a></li>
+        <li><a href="personas.html" class="nav__link">Personas</a></li>
+        <li><a href="competitive.html" class="nav__link">Competitive</a></li>
+        <li><a href="funnels.html" class="nav__link">Funnels</a></li>
+        <li><a href="marketing.html" class="nav__link nav__link--active">Marketing</a></li>
+        <li><a href="partnerships.html" class="nav__link">Partnerships</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <span class="page-header__badge">Growth Plan</span>
+      <h1 class="page-header__title">Marketing Strategy</h1>
+      <p class="page-header__description">Channel allocation, budget recommendations, and persona-specific messaging for patient acquisition.</p>
+    </div>
+  </header>
+
+  <!-- Budget Overview -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>Recommended Budget Allocation</h2>
+
+      <div class="card" data-animate>
+        <div class="grid grid--2">
+          <div>
+            <h3 class="mb-lg">Monthly Investment: $10,000 - $15,000</h3>
+            <div class="progress mb-md">
+              <div class="progress__header">
+                <span class="progress__label">Google Ads (Paid Search)</span>
+                <span class="progress__value">60% - $6,000-$9,000</span>
+              </div>
+              <div class="progress__bar">
+                <div class="progress__fill" data-value="60"></div>
+              </div>
+            </div>
+            <div class="progress mb-md">
+              <div class="progress__header">
+                <span class="progress__label">SEO & Content</span>
+                <span class="progress__value">20% - $2,000-$3,000</span>
+              </div>
+              <div class="progress__bar">
+                <div class="progress__fill" data-value="20" style="background: linear-gradient(90deg, var(--color-accent-rose), var(--color-accent-amber));"></div>
+              </div>
+            </div>
+            <div class="progress mb-md">
+              <div class="progress__header">
+                <span class="progress__label">Social Media (Paid)</span>
+                <span class="progress__value">10% - $1,000-$1,500</span>
+              </div>
+              <div class="progress__bar">
+                <div class="progress__fill" data-value="10" style="background: linear-gradient(90deg, var(--color-accent-amber), var(--color-accent-emerald));"></div>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress__header">
+                <span class="progress__label">Referral Program</span>
+                <span class="progress__value">10% - $1,000-$1,500</span>
+              </div>
+              <div class="progress__bar">
+                <div class="progress__fill" data-value="10" style="background: linear-gradient(90deg, var(--color-accent-emerald), var(--color-accent-teal));"></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-lg">Channel Rationale</h3>
+            <ul style="list-style: none;">
+              <li class="mb-lg">
+                <div class="flex items-center gap-sm mb-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <strong>Google Ads (60%)</strong>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Highest-intent channel. Patients actively searching for implant solutions. Direct ROI tracking.</p>
+              </li>
+              <li class="mb-lg">
+                <div class="flex items-center gap-sm mb-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                  <strong>SEO & Content (20%)</strong>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Long-term asset building. Educational content for research-phase patients. Local SEO dominance.</p>
+              </li>
+              <li class="mb-lg">
+                <div class="flex items-center gap-sm mb-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  <strong>Social Media (10%)</strong>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Facebook/Instagram for cosmetic personas. Retargeting and brand awareness.</p>
+              </li>
+              <li>
+                <div class="flex items-center gap-sm mb-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-emerald)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <strong>Referral Program (10%)</strong>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--color-text-secondary);">GP referral network development. Patient referral incentives. Lowest CAC channel.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Ads Strategy -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>Google Ads Campaign Structure</h2>
+
+      <div class="grid grid--2">
+        <div class="card card--accent-teal" data-animate>
+          <div class="card__header">
+            <div class="card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h3 class="card__title">All-on-4 Campaigns</h3>
+          </div>
+          <div class="mb-lg">
+            <h4 class="mb-sm" style="font-size: 0.875rem; color: var(--color-text-muted);">Primary Keywords</h4>
+            <div class="flex flex-wrap gap-sm">
+              <span class="matrix__badge matrix__badge--success">all on 4 dental implants</span>
+              <span class="matrix__badge matrix__badge--success">teeth in a day</span>
+              <span class="matrix__badge matrix__badge--success">full mouth dental implants</span>
+              <span class="matrix__badge matrix__badge--success">implant dentures</span>
+              <span class="matrix__badge matrix__badge--warning">dental implants tinley park</span>
+              <span class="matrix__badge matrix__badge--warning">implants near me</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="mb-sm" style="font-size: 0.875rem; color: var(--color-text-muted);">Ad Copy Angles</h4>
+            <ul style="list-style: none; font-size: 0.875rem;">
+              <li class="mb-sm">"40+ Year Specialist - Not a Chain"</li>
+              <li class="mb-sm">"Teeth in a Day - Same-Day Results"</li>
+              <li class="mb-sm">"Free Consultation - Financing Available"</li>
+              <li>"Best of Southland Award Winner"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card card--accent-rose" data-animate>
+          <div class="card__header">
+            <div class="card__icon" style="background: linear-gradient(135deg, var(--color-accent-rose), var(--color-accent-amber));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3 class="card__title">Cosmetic Campaigns</h3>
+          </div>
+          <div class="mb-lg">
+            <h4 class="mb-sm" style="font-size: 0.875rem; color: var(--color-text-muted);">Primary Keywords</h4>
+            <div class="flex flex-wrap gap-sm">
+              <span class="matrix__badge matrix__badge--success">porcelain veneers</span>
+              <span class="matrix__badge matrix__badge--success">smile makeover</span>
+              <span class="matrix__badge matrix__badge--success">cosmetic dentist</span>
+              <span class="matrix__badge matrix__badge--warning">veneers cost</span>
+              <span class="matrix__badge matrix__badge--warning">teeth whitening</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="mb-sm" style="font-size: 0.875rem; color: var(--color-text-muted);">Ad Copy Angles</h4>
+            <ul style="list-style: none; font-size: 0.875rem;">
+              <li class="mb-sm">"Natural-Looking Veneers"</li>
+              <li class="mb-sm">"Transform Your Smile for [Event]"</li>
+              <li class="mb-sm">"Premium Results - Experienced Team"</li>
+              <li>"Free Smile Consultation"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Persona Messaging -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>Persona-Specific Messaging</h2>
+
+      <div class="card" data-animate>
+        <div class="matrix">
+          <table class="matrix__table">
+            <thead>
+              <tr>
+                <th>Persona</th>
+                <th>Primary Channel</th>
+                <th>Headline Hook</th>
+                <th>Call-to-Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Retiring Robert</strong></td>
+                <td>Google, Facebook</td>
+                <td>"Enjoy Retirement with a Smile You're Proud Of"</td>
+                <td>Schedule Free Consultation</td>
+              </tr>
+              <tr>
+                <td><strong>Desperate Diane</strong></td>
+                <td>Google Ads</td>
+                <td>"Affordable Financing for Full-Mouth Restoration"</td>
+                <td>See Payment Options</td>
+              </tr>
+              <tr>
+                <td><strong>Practical Paul</strong></td>
+                <td>SEO, Content</td>
+                <td>"All-on-4 vs. Dentures: The 20-Year Cost Analysis"</td>
+                <td>Download Cost Guide</td>
+              </tr>
+              <tr>
+                <td><strong>Anxious Angela</strong></td>
+                <td>Local SEO, Reviews</td>
+                <td>"Gentle Sedation Options for Anxious Patients"</td>
+                <td>Read Patient Stories</td>
+              </tr>
+              <tr>
+                <td><strong>Career Carla</strong></td>
+                <td>Instagram, Google</td>
+                <td>"Your Professional Smile Starts Here"</td>
+                <td>Book Virtual Consult</td>
+              </tr>
+              <tr>
+                <td><strong>Event Sarah</strong></td>
+                <td>Social, Pinterest</td>
+                <td>"Perfect Smile for Your Perfect Day"</td>
+                <td>Timeline Consultation</td>
+              </tr>
+              <tr>
+                <td><strong>Confident Connor</strong></td>
+                <td>Instagram, LinkedIn</td>
+                <td>"Upgrade Your Look with Premium Veneers"</td>
+                <td>See Before/Afters</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landing Page Strategy -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>Landing Page Strategy</h2>
+
+      <div class="grid grid--3">
+        <div class="card" data-animate>
+          <div class="card__header">
+            <div class="card__icon" style="background: linear-gradient(135deg, var(--color-accent-teal), var(--color-accent-emerald));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <h3 class="card__title">All-on-4 Landing Page</h3>
+          </div>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Hero with transformation imagery
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Specialist credentials prominently
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Process timeline visualization
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Financing calculator widget
+            </li>
+            <li class="flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Patient testimonial videos
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" data-animate>
+          <div class="card__header">
+            <div class="card__icon" style="background: linear-gradient(135deg, var(--color-accent-rose), var(--color-accent-amber));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <h3 class="card__title">Cosmetic Landing Page</h3>
+          </div>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Before/after gallery
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Natural-looking results focus
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Service menu (veneers, whitening)
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Virtual smile preview offer
+            </li>
+            <li class="flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-rose)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Event-based messaging variations
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" data-animate>
+          <div class="card__header">
+            <div class="card__icon" style="background: linear-gradient(135deg, var(--color-accent-amber), var(--color-accent-emerald));">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="card__title">Conversion Elements</h3>
+          </div>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Click-to-call prominent
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Form above the fold
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Trust badges (awards, BBB)
+            </li>
+            <li class="mb-sm flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Chat widget with hours
+            </li>
+            <li class="flex items-center gap-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Mobile-first design
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Strategy -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>SEO & Content Strategy</h2>
+
+      <div class="card" data-animate>
+        <div class="grid grid--2">
+          <div>
+            <h3 class="mb-lg">Local SEO Priorities</h3>
+            <div class="timeline">
+              <div class="timeline__item">
+                <div class="timeline__title">Google Business Profile Optimization</div>
+                <div class="timeline__content">Complete profile with services, photos, posts, Q&A. Respond to all reviews within 24 hours.</div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__title">Local Citation Building</div>
+                <div class="timeline__content">Consistent NAP across 50+ directories. Focus on healthcare-specific directories.</div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__title">Review Generation</div>
+                <div class="timeline__content">Systematic post-treatment review requests. Target 50+ reviews on Google.</div>
+              </div>
+              <div class="timeline__item">
+                <div class="timeline__title">Local Content</div>
+                <div class="timeline__content">Location pages for Orland Park, Mokena, Frankfort. "Dental implants in [city]" content.</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-lg">Content Calendar Topics</h3>
+            <ul style="list-style: none;">
+              <li class="mb-md">
+                <span class="matrix__badge matrix__badge--success mb-sm" style="display: inline-block;">High Priority</span>
+                <ul style="list-style: none; font-size: 0.875rem; margin-top: 0.5rem;">
+                  <li class="mb-sm">- All-on-4 vs. Traditional Dentures: Complete Guide</li>
+                  <li class="mb-sm">- Cost of Dental Implants in Illinois (2026)</li>
+                  <li>- What to Expect: All-on-4 Recovery Timeline</li>
+                </ul>
+              </li>
+              <li class="mb-md">
+                <span class="matrix__badge matrix__badge--warning mb-sm" style="display: inline-block;">Medium Priority</span>
+                <ul style="list-style: none; font-size: 0.875rem; margin-top: 0.5rem;">
+                  <li class="mb-sm">- Porcelain Veneers: Before and After Gallery</li>
+                  <li class="mb-sm">- Financing Your Dental Implants</li>
+                  <li>- Dental Anxiety: Our Gentle Approach</li>
+                </ul>
+              </li>
+              <li>
+                <span class="matrix__badge matrix__badge--danger mb-sm" style="display: inline-block;">Supporting</span>
+                <ul style="list-style: none; font-size: 0.875rem; margin-top: 0.5rem;">
+                  <li class="mb-sm">- Meet Our Specialist Team</li>
+                  <li>- Patient Success Stories</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Measurement -->
+  <section class="section">
+    <div class="container">
+      <h2 class="mb-xl" data-animate>KPIs & Measurement</h2>
+
+      <div class="grid grid--4">
+        <div class="card" data-animate>
+          <h4 class="mb-md">Awareness</h4>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm">Impressions</li>
+            <li class="mb-sm">Reach</li>
+            <li>Brand searches</li>
+          </ul>
+        </div>
+        <div class="card" data-animate>
+          <h4 class="mb-md">Engagement</h4>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm">CTR</li>
+            <li class="mb-sm">Time on site</li>
+            <li>Pages per session</li>
+          </ul>
+        </div>
+        <div class="card" data-animate>
+          <h4 class="mb-md">Conversion</h4>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm">Leads generated</li>
+            <li class="mb-sm">Cost per lead</li>
+            <li>Consultation rate</li>
+          </ul>
+        </div>
+        <div class="card" data-animate>
+          <h4 class="mb-md">Revenue</h4>
+          <ul style="list-style: none; font-size: 0.875rem;">
+            <li class="mb-sm">Cases closed</li>
+            <li class="mb-sm">Revenue per case</li>
+            <li>Marketing ROI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="section">
+    <div class="container">
+      <div class="disclaimer" data-animate>
+        <div class="disclaimer__title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Healthcare Marketing Compliance
+        </div>
+        <p class="disclaimer__text">
+          All marketing materials must comply with applicable dental advertising regulations, state dental board guidelines, and HIPAA requirements. Patient testimonials require written consent. Before/after photos must accurately represent typical results with appropriate disclaimers. Claims about outcomes must be substantiated. Consult with legal and compliance professionals before implementing advertising campaigns.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div>
+          <div class="footer__brand">NCDental Growth Dashboard</div>
+          <p class="footer__description">Strategic marketing research and growth analysis for North Creek Dental Care.</p>
+        </div>
+        <div>
+          <div class="footer__title">Research Sections</div>
+          <ul class="footer__links">
+            <li><a href="executive-summary.html">Executive Summary</a></li>
+            <li><a href="personas.html">Patient Personas</a></li>
+            <li><a href="competitive.html">Competitive Analysis</a></li>
+            <li><a href="funnels.html">Funnel Economics</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__title">Strategy</div>
+          <ul class="footer__links">
+            <li><a href="marketing.html">Marketing Strategy</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>Research conducted January 2026</span>
+        <span>North Creek Dental Care - Tinley Park, IL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

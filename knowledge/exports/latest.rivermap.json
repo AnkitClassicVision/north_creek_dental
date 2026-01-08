@@ -1,0 +1,793 @@
+{
+  "map": {
+    "id": "default",
+    "name": "deep_resserach_to_website",
+    "description": "End-to-end workflow: classify → scope → hypothesize → deep research (GoT) → verify → generate website → verify → deploy.",
+    "max_depth": 5,
+    "max_children": 4
+  },
+  "root": "node_root",
+  "nodes": [
+    {
+      "id": "artifacts_folder_structure",
+      "label": "Artifacts & Folder Structure",
+      "short_def": "The files and folders the workflow expects and produces.",
+      "why_important": "Makes work auditable and enables deterministic handoff from research → website → deployment.",
+      "deep_dive": "Key artifacts include the input YAML, `/RESEARCH` outputs (including evidence ledger), and `/website` build output.",
+      "example": "Keep persona images in `/RESEARCH/images/` and copy into `/website/assets/images/` as needed.",
+      "eli5": "Where everything goes.",
+      "tags": "artifacts,folders"
+    },
+    {
+      "id": "phase0_classification_prompt",
+      "label": "Classification Prompt",
+      "short_def": "Copy-paste prompt for classifying the request.",
+      "why_important": "Standardizes how complexity is evaluated.",
+      "deep_dive": "Includes service count, locations, market complexity, relationship, and stakes.",
+      "example": "Answer the 5 evaluation questions, then choose A/B/C/D with reasoning.",
+      "eli5": "A checklist to label the job.",
+      "tags": "phase0,prompt"
+    },
+    {
+      "id": "phase5_data_nav_review",
+      "label": "Data Accuracy & Navigation Review",
+      "short_def": "Validate content matches research and all links work.",
+      "why_important": "Incorrect or broken pages undermine credibility.",
+      "deep_dive": "Verify persona/competitive/funnel data, and ensure consistent nav/footer across pages.",
+      "example": "Check active nav indicator and that every page is reachable.",
+      "eli5": "Make sure it’s correct and clickable.",
+      "tags": "phase5,data,nav"
+    },
+    {
+      "id": "node_root",
+      "label": "Deep Research → Website",
+      "short_def": "System for turning a research request into a deployed, research-backed website.",
+      "why_important": "Creates a repeatable, verifiable pipeline from ambiguity to a live site with strong UX, accurate claims, and clear artifacts.",
+      "deep_dive": "Trunk phases (0→6): Complexity classification → Information gathering → Research intensity → Hypothesis formation → Deep research (GoT) → Research review → Website generation → Website verification → Deployment.\nSource-of-truth workflow docs are vendored in `reference/template_deep_reserach/`.",
+      "example": "Use `reference/template_deep_reserach/New_question_dynamic.md` to scope inputs, then follow the phase workflow to produce `/RESEARCH` + `/website` artifacts.",
+      "eli5": "Figure out what to learn, double-check it, then build a website from it and put it live.",
+      "tags": "root,workflow,deep-research,website"
+    },
+    {
+      "id": "phase5_design_review",
+      "label": "Design Compliance Review",
+      "short_def": "Page-by-page check against the design system.",
+      "why_important": "Prevents UI drift and “almost finished” deliverables.",
+      "deep_dive": "Confirm aurora background, glassmorphism, typography, no pure black/white, and Lucide icons only.",
+      "example": "Replace every emoji with a Lucide SVG.",
+      "eli5": "Make it match the design rules.",
+      "tags": "phase5,design"
+    },
+    {
+      "id": "phase4_design_system",
+      "label": "Design System (Ethereal Clarity)",
+      "short_def": "Glass cards + aurora background + premium typography + Lucide icons (no emojis).",
+      "why_important": "Ensures a consistent, high-quality aesthetic across all pages.",
+      "deep_dive": "Source: `reference/template_deep_reserach/deisgn_elements.txt` (note filename spelling).",
+      "example": "Use Playfair Display for headings and Inter for body; use Lucide SVG icons with thin stroke.",
+      "eli5": "The look and feel rules.",
+      "tags": "phase4,design"
+    },
+    {
+      "id": "phase2_evidence_ledger",
+      "label": "Evidence Ledger & Claim Confidence",
+      "short_def": "Track claims, sources, independence groups, and confidence (C1/C2/C3).",
+      "why_important": "Enables audits and prevents weakly-supported claims from leaking into outputs.",
+      "deep_dive": "Maintain a ledger with citations and independence grouping; score and verify claims before synthesis.",
+      "example": "Mark a claim as C3 only with multiple independent, high-authority sources.",
+      "eli5": "A spreadsheet of what you think is true and why.",
+      "tags": "phase2,evidence"
+    },
+    {
+      "id": "phase3_fix_loop",
+      "label": "Fix-Until-PASS Loop",
+      "short_def": "Iterate until the research review gate passes.",
+      "why_important": "Ensures the system doesn’t advance with known errors.",
+      "deep_dive": "If context limits or blockers happen, summarize state to file and continue or declare BLOCKED.",
+      "example": "When a claim fails verification, downgrade confidence or find better sources and update the ledger.",
+      "eli5": "Keep fixing until it’s good.",
+      "tags": "phase3,loop"
+    },
+    {
+      "id": "phase6_github",
+      "label": "GitHub Repo + Push",
+      "short_def": "Create repo, commit artifacts, and push history.",
+      "why_important": "Enables collaboration, review, and traceability for deployment.",
+      "deep_dive": "Repo should include the website output and any required build/verification scripts.",
+      "example": "Commit with clear messages per phase or per deliverable set.",
+      "eli5": "Put it in version control.",
+      "tags": "phase6,git"
+    },
+    {
+      "id": "phase2_got_controller",
+      "label": "GoT Controller",
+      "short_def": "Graph of Thoughts controller: nodes/edges, scoring, pruning, and traversal.",
+      "why_important": "Coordinates parallel research paths and filters low-quality sources and claims.",
+      "deep_dive": "Includes Generate/Aggregate/Refine/RedTeam transformations and a budget-based stop condition.",
+      "example": "Prune candidates below a threshold score and keep best-per-depth.",
+      "eli5": "A system for managing lots of research threads.",
+      "tags": "phase2,got"
+    },
+    {
+      "id": "phase1_5_hypothesis_templates",
+      "label": "Hypothesis Templates",
+      "short_def": "Templates for market, competitive, and growth hypotheses (H-M/H-C/H-G).",
+      "why_important": "Keeps hypotheses testable and structured.",
+      "deep_dive": "Include confirming + disconfirming evidence requirements and test queries.",
+      "example": "Write 2–3 hypotheses per category with a 0.xx prior probability.",
+      "eli5": "Reusable hypothesis shapes.",
+      "tags": "phase1_5,templates"
+    },
+    {
+      "id": "artifact_input_variables",
+      "label": "Input Variables (YAML)",
+      "short_def": "Standardized YAML inputs for the research request.",
+      "why_important": "Inputs drive folder structure, agent allocation, and website data binding.",
+      "deep_dive": "Defined in `reference/template_deep_reserach/New_question_dynamic.md` between the INPUT VARIABLES markers.",
+      "example": "Include `company.website` and service names so logo extraction and page generation can proceed.",
+      "eli5": "The details you provide up front.",
+      "tags": "artifacts,inputs,yaml"
+    },
+    {
+      "id": "phase1_1_tier_table",
+      "label": "Intensity Tiers",
+      "short_def": "Express/Standard/Comprehensive/Enterprise tier definitions.",
+      "why_important": "Determines how much research and verification to do.",
+      "deep_dive": "Tiering considers service count, location count, market complexity, and client value.",
+      "example": "Use Enterprise tier for strategic, high-stakes decisions.",
+      "eli5": "Pick a depth level.",
+      "tags": "phase1_1,tier"
+    },
+    {
+      "id": "phase1_logo_extraction",
+      "label": "Logo Extraction",
+      "short_def": "Extract and store the company logo for research and website use.",
+      "why_important": "The logo is required for a coherent website header/footer and branding.",
+      "deep_dive": "Save to `/RESEARCH/images/[COMPANY_SHORTNAME]_logo.png` and copy to the website assets folder.",
+      "example": "Prefer SVG or transparent PNG when available.",
+      "eli5": "Grab the company logo.",
+      "tags": "phase1,assets"
+    },
+    {
+      "id": "phase5_performance",
+      "label": "Performance Optimization (Core Web Vitals)",
+      "short_def": "Meet LCP/FID/CLS targets and keep page weight low.",
+      "why_important": "Fast pages improve UX and credibility; avoid regressions with CLS-safe images and deferred assets.",
+      "deep_dive": "Targets: LCP < 2.5s, FID < 100ms, CLS < 0.1, total weight < 1.5MB.",
+      "example": "Include width/height on all images; lazy-load below-fold images; defer non-critical JS.",
+      "eli5": "Make it load quickly.",
+      "tags": "phase5,performance"
+    },
+    {
+      "id": "phase0_complexity",
+      "label": "Phase 0 — Complexity Classification",
+      "short_def": "Classify the request (A/B/C/D) to route effort and tooling.",
+      "why_important": "Prevents over-engineering simple lookups and under-resourcing high-stakes investigations.",
+      "deep_dive": "Types: A (Lookup), B (Synthesis), C (Analysis), D (Investigation).",
+      "example": "Type A: one authoritative source; Type D: novel/high-stakes, requires red team and deeper verification.",
+      "eli5": "Decide how big the job is before starting.",
+      "tags": "phase,classification"
+    },
+    {
+      "id": "phase1_info_gathering",
+      "label": "Phase 1 — Information Gathering",
+      "short_def": "Collect required inputs and update the request template.",
+      "why_important": "Bad inputs cascade into bad research and broken websites; gather and confirm early.",
+      "deep_dive": "Includes business name, shortname, website URL, addresses, services, and research focus.",
+      "example": "If hours/timezone are unclear, ask explicitly and record the assumption.",
+      "eli5": "Get the details you need.",
+      "tags": "phase,inputs"
+    },
+    {
+      "id": "phase1_1_intensity",
+      "label": "Phase 1.1 — Research Intensity",
+      "short_def": "Pick intensity tier (Express/Standard/Comprehensive/Enterprise).",
+      "why_important": "Sets time budget, number of agents, and verification depth.",
+      "deep_dive": "Tier choice should reflect service count, location count, market complexity, and stakes.",
+      "example": "Enterprise tier uses more searches, deeper verification, and stronger evidence requirements.",
+      "eli5": "How deep are we going?",
+      "tags": "phase,budget"
+    },
+    {
+      "id": "phase1_5_hypotheses",
+      "label": "Phase 1.5 — Hypothesis Formation",
+      "short_def": "Draft testable market/competitive/growth hypotheses with priors.",
+      "why_important": "Keeps research focused and makes verification measurable.",
+      "deep_dive": "Hypotheses should have confirming/disconfirming evidence and test queries.",
+      "example": "Create 6–9 hypotheses with 0.xx priors and track status in PROGRESS.",
+      "eli5": "Make educated guesses to test.",
+      "tags": "phase,hypotheses"
+    },
+    {
+      "id": "phase2_deep_research",
+      "label": "Phase 2 — Deep Research (GoT)",
+      "short_def": "Run Graph of Thoughts research with evidence ledger and red teaming.",
+      "why_important": "Produces higher-quality synthesis by exploring multiple paths and filtering weak sources.",
+      "deep_dive": "Use GoT nodes/edges, scoring, pruning, and an evidence ledger with independence groups.",
+      "example": "Generate → Aggregate → Refine → RedTeam loops until budget or saturation stop condition.",
+      "eli5": "Research widely, then narrow to what’s true.",
+      "tags": "phase,research,got"
+    },
+    {
+      "id": "phase3_research_review",
+      "label": "Phase 3 — Research Review",
+      "short_def": "Verify claims, citations, and reasoning; fix until PASS.",
+      "why_important": "Prevents incorrect claims from reaching the website and deployment.",
+      "deep_dive": "Run checklists, validate sources, and resolve contradictions before moving forward.",
+      "example": "If verification fails, patch the research outputs and rerun the checklist.",
+      "eli5": "Double-check the work.",
+      "tags": "phase,verification"
+    },
+    {
+      "id": "phase4_website_generation",
+      "label": "Phase 4 — Website Generation",
+      "short_def": "Bind research outputs into the website structure and design system.",
+      "why_important": "Turns research into a readable deliverable with consistent IA and premium UX.",
+      "deep_dive": "Use the website map template, enforce Ethereal Clarity styling, and replace emojis with Lucide icons.",
+      "example": "Create the full page set and ensure navigation is consistent across pages.",
+      "eli5": "Build the site from the research.",
+      "tags": "phase,website"
+    },
+    {
+      "id": "phase5_website_verification",
+      "label": "Phase 5 — Website Verification",
+      "short_def": "Review each page for design compliance, data accuracy, navigation, and performance.",
+      "why_important": "Catches broken links, missing assets, inconsistent styling, and performance regressions before deploy.",
+      "deep_dive": "Includes page-by-page checks, Core Web Vitals targets, and asset sizing rules.",
+      "example": "Verify no emojis remain; ensure all images have width/height attributes to avoid CLS.",
+      "eli5": "Make sure the site is correct and fast.",
+      "tags": "phase,qa"
+    },
+    {
+      "id": "phase6_deployment",
+      "label": "Phase 6 — Deployment",
+      "short_def": "Push to GitHub and deploy to Vercel; verify live.",
+      "why_important": "Completes the workflow with a shareable, live URL and auditable history.",
+      "deep_dive": "If blocked externally, create BLOCKERS.md with exact error + next step.",
+      "example": "Deploy to Vercel, then check all pages load and assets resolve on the live domain.",
+      "eli5": "Put it on the internet.",
+      "tags": "phase,deployment"
+    },
+    {
+      "id": "phase1_5_tracking",
+      "label": "Priors, Tests, and Tracking",
+      "short_def": "How to assign priors and track hypothesis status through research.",
+      "why_important": "Prevents “hand-wavy” conclusions and forces explicit uncertainty management.",
+      "deep_dive": "Track status in PROGRESS with links to evidence ledger entries.",
+      "example": "Mark hypotheses as Confirmed, Disconfirmed, or Inconclusive with citations.",
+      "eli5": "Keep score as you learn.",
+      "tags": "phase1_5,tracking"
+    },
+    {
+      "id": "phase2_red_team_overlays",
+      "label": "Red Team + Domain Overlays",
+      "short_def": "Negative searches and domain-specific constraints for regulated topics.",
+      "why_important": "Finds counterevidence and enforces safer claims in regulated domains.",
+      "deep_dive": "Use `reference/template_deep_reserach/DOMAIN_OVERLAYS/` for domain-specific sources and “when in doubt” guidance.",
+      "example": "Healthcare overlay should bias toward PubMed/CDC/state boards over blogs.",
+      "eli5": "Try to prove yourself wrong, with domain rules.",
+      "tags": "phase2,red-team,overlays"
+    },
+    {
+      "id": "reference_materials",
+      "label": "Reference Materials",
+      "short_def": "Vendored source docs that define the workflow and templates.",
+      "why_important": "Keeps the concept grounded in the actual process docs and prevents drift.",
+      "deep_dive": "See `reference/template_deep_reserach/` for the full spec, prompts, and overlays.",
+      "example": "Open `reference/template_deep_reserach/Claude.md` for the complete phase-by-phase workflow.",
+      "eli5": "The original instructions and templates.",
+      "tags": "reference,source"
+    },
+    {
+      "id": "phase1_required_questions",
+      "label": "Required Questions",
+      "short_def": "The minimum questions to ask before starting research.",
+      "why_important": "Ensures the research and website are scoped correctly.",
+      "deep_dive": "Includes company name, short name, website, addresses, services, and research focus.",
+      "example": "If multiple locations exist, record all addresses as a YAML list.",
+      "eli5": "What you need to ask first.",
+      "tags": "phase1,inputs"
+    },
+    {
+      "id": "artifact_research_folder",
+      "label": "Research Output Folder (/RESEARCH)",
+      "short_def": "Research artifacts: summaries, raw notes, evidence ledger, and images.",
+      "why_important": "Preserves traceability from claims to sources and supports downstream website generation.",
+      "deep_dive": "Includes an evidence ledger (claims + sources) and generated persona images under `/RESEARCH/images/`.",
+      "example": "Save the company logo to `/RESEARCH/images/[COMPANY_SHORTNAME]_logo.png`.",
+      "eli5": "The research binder.",
+      "tags": "artifacts,research"
+    },
+    {
+      "id": "ref_research_request_template",
+      "label": "Research Request Template (New_question_dynamic.md)",
+      "short_def": "YAML input template + dynamic folder contract for research.",
+      "why_important": "Standardizes inputs (company/services/market) so research agents and website generation stay consistent.",
+      "deep_dive": "Source: `reference/template_deep_reserach/New_question_dynamic.md`.",
+      "example": "Fill in `company.name`, `company.website`, and `services.primary.name` before starting research.",
+      "eli5": "The form you fill out to start.",
+      "tags": "reference,inputs"
+    },
+    {
+      "id": "phase4_data_binding",
+      "label": "Research-to-Website Data Binding",
+      "short_def": "Rules for mapping research artifacts into website content.",
+      "why_important": "Prevents stale or mismatched data and supports traceability.",
+      "deep_dive": "Use a content map (e.g., content_map.json) so every page section points back to a research source file.",
+      "example": "If a persona card exists on the site, it must map to a persona definition in the research outputs.",
+      "eli5": "Connect the research to the site content.",
+      "tags": "phase4,data-binding"
+    },
+    {
+      "id": "phase1_1_skill_plan",
+      "label": "Skill Allocation Plan",
+      "short_def": "Which tools/skills to use per phase (research, verification, images, deployment).",
+      "why_important": "Ensures the right tool is used for the job and verification is independent.",
+      "deep_dive": "Primary patterns: Perplexity for research, Codex for verification, Nanobanana for images, Vercel for deploy.",
+      "example": "Use Codex at Phase 3/5 for audit-style verification before proceeding.",
+      "eli5": "Use the right tool at the right time.",
+      "tags": "phase1_1,skills"
+    },
+    {
+      "id": "phase0_type_routing",
+      "label": "Type Routing (A/B/C/D)",
+      "short_def": "Routing logic for which phases to execute by request type.",
+      "why_important": "Aligns effort to complexity and stakes.",
+      "deep_dive": "Defined in `reference/template_deep_reserach/Claude.md` under Phase 0.",
+      "example": "Type A may skip most phases; Type C/D runs full 0–6 workflow.",
+      "eli5": "Different jobs get different processes.",
+      "tags": "phase0,routing"
+    },
+    {
+      "id": "phase6_vercel",
+      "label": "Vercel Deploy + Live Verification",
+      "short_def": "Deploy and confirm the live site works end-to-end.",
+      "why_important": "Ensures the deliverable is actually reachable and correct in production.",
+      "deep_dive": "Verify all pages load, assets resolve, and performance is acceptable on the live URL.",
+      "example": "If deployment fails, create BLOCKERS.md with the exact error and next steps.",
+      "eli5": "Ship it and check it.",
+      "tags": "phase6,vercel"
+    },
+    {
+      "id": "phase3_verification_checklist",
+      "label": "Verification Checklist",
+      "short_def": "Checklist for research correctness before website generation.",
+      "why_important": "Prevents compounding errors downstream.",
+      "deep_dive": "Validate citations, resolve contradictions, and ensure deliverables exist before moving to Phase 4.",
+      "example": "If any checklist item fails, update research artifacts and re-run the review.",
+      "eli5": "A list of checks before you continue.",
+      "tags": "phase3,checklist"
+    },
+    {
+      "id": "ref_website_creation_prompt",
+      "label": "Website Creation Prompt",
+      "short_def": "Instructions for generating the website from research artifacts.",
+      "why_important": "Prevents mismatches between research outputs and website pages, and enforces consistent UI rules.",
+      "deep_dive": "Source: `reference/template_deep_reserach/prompt for website.md`.",
+      "example": "Use `website_map_master_template_old.md` for page structure and `deisgn_elements.txt` for Ethereal Clarity design.",
+      "eli5": "How to build the site from the research.",
+      "tags": "reference,website"
+    },
+    {
+      "id": "phase4_site_structure",
+      "label": "Website Map & Pages",
+      "short_def": "Information architecture and page list for the generated website.",
+      "why_important": "Keeps content organized and navigable across the deliverable.",
+      "deep_dive": "Source: `reference/template_deep_reserach/website_map_master_template_old.md`.",
+      "example": "Typical pages: Home, Executive Summary, Personas, Competitive, Funnels, Marketing, Partnerships.",
+      "eli5": "What pages to build and what goes on them.",
+      "tags": "phase4,ia"
+    },
+    {
+      "id": "artifact_website_folder",
+      "label": "Website Output Folder (/website)",
+      "short_def": "Static website generated from research outputs and templates.",
+      "why_important": "Turns synthesized research into a clear, navigable deliverable that can be deployed.",
+      "deep_dive": "Website pages follow the template map and embed research outputs (personas, competitive analysis, funnels, marketing, partnerships).",
+      "example": "Copy persona headshots from `/RESEARCH/images/` into `/website/assets/images/personas/`.",
+      "eli5": "The final site files.",
+      "tags": "artifacts,website"
+    },
+    {
+      "id": "ref_workflow_spec",
+      "label": "Workflow Spec (Claude.md)",
+      "short_def": "End-to-end phase workflow: classification → research → website → deploy.",
+      "why_important": "Defines the phases, gates, and stop rules for the system.",
+      "deep_dive": "Source: `reference/template_deep_reserach/Claude.md`.",
+      "example": "Follow the trunk phases 0–6 and do not stop until COMPLETE or BLOCKED.",
+      "eli5": "The master playbook.",
+      "tags": "reference,workflow"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_root__phase0",
+      "from": "node_root",
+      "to": "phase0_complexity",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase0__phase1",
+      "from": "phase0_complexity",
+      "to": "phase1_info_gathering",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1__phase1_1",
+      "from": "phase1_info_gathering",
+      "to": "phase1_1_intensity",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_1__phase1_5",
+      "from": "phase1_1_intensity",
+      "to": "phase1_5_hypotheses",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_5__phase2",
+      "from": "phase1_5_hypotheses",
+      "to": "phase2_deep_research",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase2__phase3",
+      "from": "phase2_deep_research",
+      "to": "phase3_research_review",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase3__phase4",
+      "from": "phase3_research_review",
+      "to": "phase4_website_generation",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase4__phase5",
+      "from": "phase4_website_generation",
+      "to": "phase5_website_verification",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase5__phase6",
+      "from": "phase5_website_verification",
+      "to": "phase6_deployment",
+      "type": "precedes",
+      "is_trunk": true,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_reference_materials__ref_workflow_spec",
+      "from": "reference_materials",
+      "to": "ref_workflow_spec",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_artifacts_folder_structure__artifact_input_variables",
+      "from": "artifacts_folder_structure",
+      "to": "artifact_input_variables",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase6__github",
+      "from": "phase6_deployment",
+      "to": "phase6_github",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 1,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_root__reference_materials",
+      "from": "node_root",
+      "to": "reference_materials",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_reference_materials__ref_research_request_template",
+      "from": "reference_materials",
+      "to": "ref_research_request_template",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_artifacts_folder_structure__artifact_research_folder",
+      "from": "artifacts_folder_structure",
+      "to": "artifact_research_folder",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase0__phase0_type_routing",
+      "from": "phase0_complexity",
+      "to": "phase0_type_routing",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1__phase1_required_questions",
+      "from": "phase1_info_gathering",
+      "to": "phase1_required_questions",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_1__tier_table",
+      "from": "phase1_1_intensity",
+      "to": "phase1_1_tier_table",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_5__hypothesis_templates",
+      "from": "phase1_5_hypotheses",
+      "to": "phase1_5_hypothesis_templates",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase2__got_controller",
+      "from": "phase2_deep_research",
+      "to": "phase2_got_controller",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase3__verification_checklist",
+      "from": "phase3_research_review",
+      "to": "phase3_verification_checklist",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase4__site_structure",
+      "from": "phase4_website_generation",
+      "to": "phase4_site_structure",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase5__design_review",
+      "from": "phase5_website_verification",
+      "to": "phase5_design_review",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase6__vercel",
+      "from": "phase6_deployment",
+      "to": "phase6_vercel",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 2,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_root__artifacts_folder_structure",
+      "from": "node_root",
+      "to": "artifacts_folder_structure",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_reference_materials__ref_website_creation_prompt",
+      "from": "reference_materials",
+      "to": "ref_website_creation_prompt",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_artifacts_folder_structure__artifact_website_folder",
+      "from": "artifacts_folder_structure",
+      "to": "artifact_website_folder",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase0__phase0_classification_prompt",
+      "from": "phase0_complexity",
+      "to": "phase0_classification_prompt",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1__phase1_logo_extraction",
+      "from": "phase1_info_gathering",
+      "to": "phase1_logo_extraction",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_1__skill_plan",
+      "from": "phase1_1_intensity",
+      "to": "phase1_1_skill_plan",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase1_5__tracking",
+      "from": "phase1_5_hypotheses",
+      "to": "phase1_5_tracking",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase2__evidence_ledger",
+      "from": "phase2_deep_research",
+      "to": "phase2_evidence_ledger",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase3__fix_loop",
+      "from": "phase3_research_review",
+      "to": "phase3_fix_loop",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase4__data_binding",
+      "from": "phase4_website_generation",
+      "to": "phase4_data_binding",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase5__data_nav_review",
+      "from": "phase5_website_verification",
+      "to": "phase5_data_nav_review",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 3,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase2__red_team_overlays",
+      "from": "phase2_deep_research",
+      "to": "phase2_red_team_overlays",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 4,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase4__design_system",
+      "from": "phase4_website_generation",
+      "to": "phase4_design_system",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 4,
+      "depth_hint": null,
+      "notes": null
+    },
+    {
+      "id": "edge_phase5__performance",
+      "from": "phase5_website_verification",
+      "to": "phase5_performance",
+      "type": "part_of",
+      "is_trunk": false,
+      "order": 4,
+      "depth_hint": null,
+      "notes": null
+    }
+  ],
+  "rules": {
+    "max_children_per_node": 4,
+    "recommended_children_per_node": [
+      2,
+      3
+    ],
+    "no_single_child_rule": true,
+    "max_depth": 5
+  }
+}

@@ -1,0 +1,112 @@
+7. Imagery & Iconography
+
+A. Icon Strategy (No Emojis)
+
+The use of standard emojis (💰, 📈) is strictly forbidden. They clash with the premium aesthetic.
+
+Use: High-quality, thin-stroke SVG icons (e.g., Lucide or Phosphor Icons).
+
+Style: stroke-width: 1.5px.
+
+Color: Inherit text color or use the Primary Accent (#6366F1) for emphasis.
+
+Container: Place key icons inside a "Glass Squircle" (rounded square) with a soft colored background (e.g., bg-indigo-50).
+
+B. Photographic Style: "Abstract Macro"
+
+Since the analysis is precise and medical (Eye Care), imagery should reflect clarity and fluidity.
+
+Subject Matter: Macro photography of water droplets, refracted light, glass textures, or abstract iris patterns.
+
+Vibe: Refreshing, hydration, clarity, clean.
+
+Treatment: Images should have soft, non-black shadows. Apply a subtle overlay of the background color (#F8FAFC at 10% opacity) to blend them into the page.
+
+C. Persona Styling (Approved)
+
+Human portraits for Personas are the only exception to the "Abstract" rule.
+
+Shape: Circular or "Squircle" crops.
+
+Border: Add a 3px solid white border (#FFFFFF) and a soft shadow to pop them off the glass card.
+
+Effect: Black & White photos with the background removed often look more "editorial," but high-quality color headshots are acceptable if lighting is soft.
+
+D. Data Visualization
+
+Charts must look like they are made of light.
+
+Lines: Use gradients (e.g., Emerald fading to transparent), not solid colors.
+
+Grid Lines: Dotted and extremely subtle (rgba(0,0,0,0.05)).
+
+Tooltips: Glassmorphism style (blurred background) instead of solid black boxes.
+
+---
+
+E. Performance-First Animation Guidelines (CRITICAL)
+
+The premium aesthetic must NOT sacrifice loading speed. All visual effects must be GPU-optimized.
+
+1. Aurora Background Performance
+
+REQUIRED: Use transform3d for GPU acceleration, NEVER animate top/left/width/height.
+
+- will-change: transform on aurora blobs (promotes to GPU layer)
+- transform: translate3d(0, 0, 0) as base (forces GPU compositing)
+- filter: blur(80px) with opacity: 0.6 (soft edges, reduced paint cost)
+- animation-duration: 20s minimum (slow = smooth = low CPU)
+- Use scale() within transform for size changes, never width/height
+
+2. Glass Card Performance
+
+- Apply will-change: transform ONLY on :hover state
+- Remove will-change on :not(:hover) to free GPU memory
+- ONLY animate transform and opacity properties
+- NEVER animate: box-shadow, width, height, padding, margin, border
+- Use isolation: isolate to prevent backdrop-filter repaint propagation
+- Maximum 5 elements with backdrop-filter per page
+
+3. Hover Lift Effect
+
+GOOD (GPU accelerated):
+  transform: translateY(-4px) scale(1.02);
+  opacity: 0.95;
+
+BAD (triggers layout/paint):
+  top: -4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  margin-top: -4px;
+
+4. Reduced Motion Support (REQUIRED for accessibility)
+
+All pages MUST include @media (prefers-reduced-motion: reduce) rules:
+- Disable all CSS animations
+- Remove transform hover effects
+- Provide static aurora fallback (fixed gradient)
+- Ensure content is still visually appealing without motion
+
+5. Scroll Reveal Performance
+
+- Use IntersectionObserver API (not scroll event listeners)
+- Apply will-change: transform, opacity ONLY when element enters viewport
+- Remove will-change after animation completes
+- Use CSS transitions, not JavaScript-driven animations
+- rootMargin: "50px" for pre-loading before visible
+
+6. Resource Loading Priority
+
+Critical (load immediately):
+- Aurora CSS (inline in <head>)
+- Typography CSS
+- Hero section styles
+
+Deferred (load after paint):
+- Scroll reveal JavaScript
+- Spotlight cursor effect
+- Chart/data visualization scripts
+
+Lazy (load on interaction):
+- Spotlight effect (on first mousemove)
+- Complex animations
+- Analytics scripts

@@ -1,0 +1,80 @@
+flowchart LR
+  artifacts_folder_structure["Artifacts & Folder Structure"]
+  phase0_classification_prompt["Classification Prompt"]
+  phase5_data_nav_review["Data Accuracy & Navigation Review"]
+  node_root["Deep Research → Website"]
+  phase5_design_review["Design Compliance Review"]
+  phase4_design_system["Design System (Ethereal Clarity)"]
+  phase2_evidence_ledger["Evidence Ledger & Claim Confidence"]
+  phase3_fix_loop["Fix-Until-PASS Loop"]
+  phase6_github["GitHub Repo + Push"]
+  phase2_got_controller["GoT Controller"]
+  phase1_5_hypothesis_templates["Hypothesis Templates"]
+  artifact_input_variables["Input Variables (YAML)"]
+  phase1_1_tier_table["Intensity Tiers"]
+  phase1_logo_extraction["Logo Extraction"]
+  phase5_performance["Performance Optimization (Core Web Vitals)"]
+  phase0_complexity["Phase 0 — Complexity Classification"]
+  phase1_info_gathering["Phase 1 — Information Gathering"]
+  phase1_1_intensity["Phase 1.1 — Research Intensity"]
+  phase1_5_hypotheses["Phase 1.5 — Hypothesis Formation"]
+  phase2_deep_research["Phase 2 — Deep Research (GoT)"]
+  phase3_research_review["Phase 3 — Research Review"]
+  phase4_website_generation["Phase 4 — Website Generation"]
+  phase5_website_verification["Phase 5 — Website Verification"]
+  phase6_deployment["Phase 6 — Deployment"]
+  phase1_5_tracking["Priors, Tests, and Tracking"]
+  phase2_red_team_overlays["Red Team + Domain Overlays"]
+  reference_materials["Reference Materials"]
+  phase1_required_questions["Required Questions"]
+  artifact_research_folder["Research Output Folder (/RESEARCH)"]
+  ref_research_request_template["Research Request Template (New_question_dynamic.md)"]
+  phase4_data_binding["Research-to-Website Data Binding"]
+  phase1_1_skill_plan["Skill Allocation Plan"]
+  phase0_type_routing["Type Routing (A/B/C/D)"]
+  phase6_vercel["Vercel Deploy + Live Verification"]
+  phase3_verification_checklist["Verification Checklist"]
+  ref_website_creation_prompt["Website Creation Prompt"]
+  phase4_site_structure["Website Map & Pages"]
+  artifact_website_folder["Website Output Folder (/website)"]
+  ref_workflow_spec["Workflow Spec (Claude.md)"]
+  node_root -- "precedes" --> phase0_complexity
+  phase0_complexity -- "precedes" --> phase1_info_gathering
+  phase1_info_gathering -- "precedes" --> phase1_1_intensity
+  phase1_1_intensity -- "precedes" --> phase1_5_hypotheses
+  phase1_5_hypotheses -- "precedes" --> phase2_deep_research
+  phase2_deep_research -- "precedes" --> phase3_research_review
+  phase3_research_review -- "precedes" --> phase4_website_generation
+  phase4_website_generation -- "precedes" --> phase5_website_verification
+  phase5_website_verification -- "precedes" --> phase6_deployment
+  reference_materials -- "part_of" --> ref_workflow_spec
+  artifacts_folder_structure -- "part_of" --> artifact_input_variables
+  phase6_deployment -- "part_of" --> phase6_github
+  node_root -- "part_of" --> reference_materials
+  reference_materials -- "part_of" --> ref_research_request_template
+  artifacts_folder_structure -- "part_of" --> artifact_research_folder
+  phase0_complexity -- "part_of" --> phase0_type_routing
+  phase1_info_gathering -- "part_of" --> phase1_required_questions
+  phase1_1_intensity -- "part_of" --> phase1_1_tier_table
+  phase1_5_hypotheses -- "part_of" --> phase1_5_hypothesis_templates
+  phase2_deep_research -- "part_of" --> phase2_got_controller
+  phase3_research_review -- "part_of" --> phase3_verification_checklist
+  phase4_website_generation -- "part_of" --> phase4_site_structure
+  phase5_website_verification -- "part_of" --> phase5_design_review
+  phase6_deployment -- "part_of" --> phase6_vercel
+  node_root -- "part_of" --> artifacts_folder_structure
+  reference_materials -- "part_of" --> ref_website_creation_prompt
+  artifacts_folder_structure -- "part_of" --> artifact_website_folder
+  phase0_complexity -- "part_of" --> phase0_classification_prompt
+  phase1_info_gathering -- "part_of" --> phase1_logo_extraction
+  phase1_1_intensity -- "part_of" --> phase1_1_skill_plan
+  phase1_5_hypotheses -- "part_of" --> phase1_5_tracking
+  phase2_deep_research -- "part_of" --> phase2_evidence_ledger
+  phase3_research_review -- "part_of" --> phase3_fix_loop
+  phase4_website_generation -- "part_of" --> phase4_data_binding
+  phase5_website_verification -- "part_of" --> phase5_data_nav_review
+  phase2_deep_research -- "part_of" --> phase2_red_team_overlays
+  phase4_website_generation -- "part_of" --> phase4_design_system
+  phase5_website_verification -- "part_of" --> phase5_performance
+  classDef trunk stroke-width:3px;
+  class node_root,phase0_complexity,phase1_1_intensity,phase1_5_hypotheses,phase1_info_gathering,phase2_deep_research,phase3_research_review,phase4_website_generation,phase5_website_verification,phase6_deployment trunk;
