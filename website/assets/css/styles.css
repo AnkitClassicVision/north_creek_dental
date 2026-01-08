@@ -524,8 +524,8 @@ a:hover {
 }
 
 .persona-card__avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-bottom: var(--space-lg);
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-accent-indigo), var(--color-accent-rose));
@@ -536,6 +536,15 @@ a:hover {
   font-size: 2rem;
   font-weight: 600;
   color: white;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.persona-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .persona-card__name {
